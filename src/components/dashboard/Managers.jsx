@@ -8,7 +8,7 @@ const ManagerProfile = (props) => {
 
 
     const fetchManager = () => {
-        fetch(`https://dualnature.xyz/api/managers/${props.username}/`)
+        fetch(`http://16.171.44.65:8000/api/managers/${props.username}/`)
             .then(response => response.json())
             .then(data => setManager(data))
             .catch(error => console.error('Error fetching manager:', error));

@@ -9,15 +9,14 @@ const Transactions = () => {
         quantity: 0,
         total_price: 0,
         location: '',
-        customer_id: '', // Use customer_id instead of customer
+        customer_id: '', 
     });
 
     useEffect(() => {
         const token = localStorage.getItem('token'); 
-        print(token)
 
         // Fetch transactions data from the backend
-        fetch('https://dualnature.xyz/api/transactions/', {
+        fetch('http://16.171.44.65:8000/api/transactions/', {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Token ${token}`,
@@ -28,7 +27,7 @@ const Transactions = () => {
             .catch(error => console.error('Error fetching transactions:', error));
         
         // Fetch customers data from the backend
-        fetch('https://dualnature.xyz/api/customers/', {
+        fetch('http://16.171.44.65:8000/api/customers/', {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Token ${token}`,
@@ -48,10 +47,10 @@ const Transactions = () => {
     };
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         const token = localStorage.getItem('token'); // Get the token from local storage
         // POST request to add new transaction
-        fetch('https://dualnature.xyz/api/transactions/', {
+        fetch('http://16.171.44.65:8000/api/transactions/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -15,7 +15,7 @@ const Customers = () => {
     }, []);
 
     const fetchCustomers = () => {
-        fetch('https://dualnature.xyz/api/customers/', {
+        fetch('http://16.171.44.65:8000/api/customers/', {
             headers: {
                 Authorization: `Token ${localStorage.getItem('token')}`  // Send token for authentication
             }
@@ -35,7 +35,7 @@ const Customers = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('https://dualnature.xyz/api/customers/', {
+        fetch('http://16.171.44.65:8000/api/customers/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -5,7 +5,7 @@ const Stats = () => {
 
     useEffect(() => {
         // Fetch stats data from the backend
-        fetch('https://dualnature.xyz/api/stats/')
+        fetch('http://16.171.44.65:8000/api/stats/')
             .then(response => response.json())
             .then(data => setStats(data))
             .catch(error => console.error('Error fetching stats:', error));

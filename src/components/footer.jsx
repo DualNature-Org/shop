@@ -24,7 +24,11 @@ const Footer = ({ userGroup }) => {
         const options = getOptions();
 
         return options.map((option, index) => (
-            <Link key={index} to={option.path} className={`text-center ${location.pathname === option.path ? 'text-blue-500' : 'text-gray-500'}`}>
+            <Link 
+            key={index} 
+            to={option.path} 
+            className={`text-center ${location.pathname === option.path ? 'text-blue-500' : 'text-gray-500'}`}
+            >
                 <div>
                     <i className={option.icon}></i>
                 </div>
