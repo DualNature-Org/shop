@@ -17,7 +17,7 @@ const Transactions = () => {
         print(token)
 
         // Fetch transactions data from the backend
-        fetch('http://localhost:8000/api/transactions/', {
+        fetch('https://dualnature.xyz/api/transactions/', {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Token ${token}`,
@@ -28,7 +28,7 @@ const Transactions = () => {
             .catch(error => console.error('Error fetching transactions:', error));
         
         // Fetch customers data from the backend
-        fetch('http://localhost:8000/api/customers/', {
+        fetch('https://dualnature.xyz/api/customers/', {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Token ${token}`,
@@ -51,7 +51,7 @@ const Transactions = () => {
         e.preventDefault();
         const token = localStorage.getItem('token'); // Get the token from local storage
         // POST request to add new transaction
-        fetch('http://localhost:8000/api/transactions/', {
+        fetch('https://dualnature.xyz/api/transactions/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -141,7 +141,7 @@ const Transactions = () => {
                         >
                             <option value="">Select a customer</option>
                             {customers.map(customer => (
-                                <option key={customer.id} value={customer.id}>{customer.name}</option>
+                                <option key={customer.id} value={customer.id}>{customer.username}</option>
                             ))}
                         </select>
                     </label>

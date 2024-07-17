@@ -7,8 +7,8 @@ const Footer = ({ userGroup }) => {
     const managerOptions = [
         { path: "/dashboard/customers", icon: "fas fa-users", label: "Customers" },
         { path: "/dashboard/transactions", icon: "fas fa-exchange-alt", label: "Transactions" },
-        { path: "/dashboard/managers", icon: "fas fa-user-tie", label: "Managers" },
-        { path: "/dashboard/stats", icon: "fas fa-chart-line", label: "Stats" },
+        { path: "/dashboard/profile", icon: "fas fa-user-tie", label: "Profile" },
+        // { path: "/dashboard/stats", icon: "fas fa-chart-line", label: "Stats" },
     ];
 
     const getOptions = () => {
@@ -34,7 +34,7 @@ const Footer = ({ userGroup }) => {
     };
 
     return (
-        <div className="fixed bottom-0 w-full bg-white border-t shadow-lg flex justify-around p-2 bg-gray-400">
+        <div className="fixed bottom-0 w-full bg-white border-t shadow-lg flex justify-around p-2 bg-gray-100">
             {renderFooterOptions()}
         </div>
     );

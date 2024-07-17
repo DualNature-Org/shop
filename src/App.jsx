@@ -5,7 +5,7 @@ import Logout from './components/logout';
 import Footer from './components/footer';
 import Customers from './components/dashboard/Customers';
 import Transactions from './components/dashboard/Transactions';
-import Managers from './components/dashboard/Managers';
+import ManagerProfile from './components/dashboard/Managers';
 import Stats from './components/dashboard/Stats';
 
 
@@ -15,9 +15,9 @@ const App = () => {
 
     return (
         <Router>
-            <div className="min-h-screen flex flex-col bg-gray-200">
+            <div className="min-h-screen flex flex-col bg-gray-300">
                 <div className="flex-grow">
-                    {userGroup && <Logout setGroup={setUserGroup} />}
+                    {/* {userGroup && <Logout setGroup={setUserGroup} />} */}
                     <Routes>
                         <Route path="/" element={
                             userGroup ? (
@@ -38,7 +38,7 @@ const App = () => {
                                         <Route index element={<Navigate to="/dashboard/customers" />} />
                                         <Route path="/dashboard/customers" element={<Customers />} />
                                         <Route path="/dashboard/transactions" element={<Transactions />} />
-                                        <Route path="/dashboard/managers" element={<Managers />} />
+                                        <Route path="/dashboard/profile" element={<ManagerProfile id={username} />} />
                                         <Route path="/dashboard/stats" element={<Stats />} />
                                     </>
                                 )}

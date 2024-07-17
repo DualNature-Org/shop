@@ -11,12 +11,19 @@ const Customers = () => {
     });
 
     useEffect(() => {
-        // Fetch customers data from the backend
-        fetch('http://localhost:8000/api/customers/')
-            .then(response => response.json())
-            .then(data => setCustomers(data))
-            .catch(error => console.error('Error fetching customers:', error));
+        fetchCustomers();
     }, []);
+
+    const fetchCustomers = () => {
+        fetch('https://dualnature.xyz/api/customers/', {
+            headers: {
+                Authorization: `Token ${localStorage.getItem('token')}`  // Send token for authentication
+            }
+        })
+        .then(response => response.json())
+        .then(data => setCustomers(data))
+        .catch(error => console.error('Error fetching customers:', error));
+    };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -28,19 +35,19 @@ const Customers = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // POST request to add new customer
-        fetch('http://localhost:8000/api/customers/', {
+        fetch('https://dualnature.xyz/api/customers/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                Authorization: `Token ${localStorage.getItem('token')}`  // Send token for authentication
             },
             body: JSON.stringify(newCustomer),
         })
         .then(response => response.json())
         .then(data => {
-            setCustomers([...customers, data]); // Update customers state with new data
-            setNewCustomer({ username: '', employment_type: 'business', domain: '', phone_number: '' }); // Clear form fields
-            setShowForm(false); // Hide form after submission
+            setCustomers([...customers, data]);
+            setNewCustomer({ username: '', employment_type: 'business', domain: '', phone_number: '' });
+            setShowForm(false);
         })
         .catch(error => console.error('Error adding customer:', error));
     };
@@ -115,11 +122,38 @@ const Customers = () => {
                 </form>
             )}
 
-            <ul>
-                {customers.map(customer => (
-                    <li key={customer.id}>{customer.username}</li>
-                ))}
-            </ul>
+            <div className="overflow-x-auto">
+                <table className="min-w-full divide-y divide-gray-200">
+                    <thead className="bg-gray-50">
+                        <tr>
+                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Username
+                            </th>
+                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Domain
+                            </th>
+                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Last Purchase Time
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                        {customers.map(customer => (
+                            <tr key={customer.id}>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    {customer.username}
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {customer.phone_number || '-'}
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {customer.employment_type || '-'}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };

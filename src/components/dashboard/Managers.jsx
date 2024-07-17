@@ -1,27 +1,33 @@
 import React, { useEffect, useState } from 'react';
 
-const Managers = () => {
-    const [managers, setManagers] = useState([]);
+const ManagerProfile = (props) => {
+    const [manager, setManager] = useState(null);
+    const [transactionCount, setTransactionCount] = useState(0);
 
     useEffect(() => {
-        // Fetch managers data from the backend
-        fetch('http://localhost:8000/api/managers/')
+
+
+    const fetchManager = () => {
+        fetch(`https://dualnature.xyz/api/managers/${props.username}/`)
             .then(response => response.json())
-            .then(data => setManagers(data))
-            .catch(error => console.error('Error fetching managers:', error));
+            .then(data => setManager(data))
+            .catch(error => console.error('Error fetching manager:', error));
+    };
     }, []);
 
     return (
         <div className="p-4">
-            <h2 className="text-2xl mb-4">Managers</h2>
-            <ul>
-                {managers.map(manager => (
-                    <li key={manager.id}>{manager.user.username}</li>
-                ))}
-            </ul>
-            <button className="mt-4 bg-blue-500 text-white py-2 px-4 rounded">Add Manager</button>
+            {manager && (
+                <div className="mb-8">
+                    <h2 className="text-2xl font-bold mb-2">Manager Profile</h2>
+                    <p><strong>Username:</strong> {manager.user.username}</p>
+                    <p><strong>Email:</strong> {manager.user.email}</p>
+                    <p><strong>Name:</strong> {manager.user.first_name} {manager.user.last_name}</p>
+                </div>
+            )}
+
         </div>
     );
 };
 
-export default Managers;
+export default ManagerProfile;
