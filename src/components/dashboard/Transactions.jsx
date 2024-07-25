@@ -47,7 +47,7 @@ const Transactions = () => {
     };
 
     const handleSubmit = (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         const token = localStorage.getItem('token'); // Get the token from local storage
         // POST request to add new transaction
         fetch('http://16.171.44.65:8000/api/transactions/', {

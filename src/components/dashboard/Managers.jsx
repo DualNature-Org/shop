@@ -5,8 +5,6 @@ const ManagerProfile = (props) => {
     const [transactionCount, setTransactionCount] = useState(0);
 
     useEffect(() => {
-
-
     const fetchManager = () => {
         fetch(`http://16.171.44.65:8000/api/managers/${props.username}/`)
             .then(response => response.json())
@@ -19,6 +17,7 @@ const ManagerProfile = (props) => {
         <div className="p-4">
             {manager && (
                 <div className="mb-8">
+                    hello
                     <h2 className="text-2xl font-bold mb-2">Manager Profile</h2>
                     <p><strong>Username:</strong> {manager.user.username}</p>
                     <p><strong>Email:</strong> {manager.user.email}</p>
